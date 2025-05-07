@@ -1,0 +1,392 @@
+{% extends 'tradingapp/elements/layouts/admin.html' %}
+{% load static %}
+        
+{% block additional_css %}
+{% endblock %}
+        
+{% block content %}
+
+<!--**********************************
+    Content body start
+***********************************-->
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+        <!-- Row -->
+        <div class="row">
+            <div class="col-xl-3 col-xxl-4 col-sm-6 my-order-ile">
+                <div class="card">
+                    <div class="card-header border-0 pb-3">
+                        <h4 class="card-title">Market Previews</h4>	
+                    </div>
+                    <div class="card-body px-0 pt-0 dlab-scroll height370">
+                        {% for crypto in cryptos %}
+                        <div class="d-flex justify-content-between align-items-center market-preview px-3 py-2">
+                            <div class="d-flex align-items-center">
+                                <span>
+                                    <img src="https://s2.coinmarketcap.com/static/img/coins/64x64/{{ crypto.id }}.png" alt="{{ crypto.name }}" width="32" height="32">
+                                </span>
+                                <div class="ms-3">
+                                    <h6 class="mb-0">{{ crypto.name }}</h6>
+                                    <small>{{ crypto.symbol }}</small>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <h6 class="mb-0">${{ crypto.quote.USD.price|floatformat:2 }}</h6>
+                                <span class="{% if crypto.quote.USD.percent_change_24h >= 0 %}text-success{% else %}text-danger{% endif %}">
+                                    {{ crypto.quote.USD.percent_change_24h|floatformat:2 }}%
+                                </span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-xxl-8">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-body p-0">
+                                <div class="market-coin flex-wrap">
+                                    <div class="d-flex align-items-center coin-box">
+                                        <span>
+                                            <svg width="46" height="46" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M37.3334 22.167C37.3318 20.2347 35.7654 18.6688 33.8336 18.6667H23.3334V25.6667H33.8336C35.7654 25.6651 37.3318 24.0987 37.3334 22.167Z" fill="#FFAB2D"/>
+                                                <path d="M23.3334 37.3333H33.8336C35.7664 37.3333 37.3334 35.7664 37.3334 33.8336C37.3334 31.9003 35.7664 30.3333 33.8336 30.3333H23.3334V37.3333Z" fill="#FFAB2D"/>
+                                                <path d="M28 0C12.5361 0 0 12.5361 0 28C0 43.4639 12.5361 56 28 56C43.4639 56 56 43.4639 56 28C55.9823 12.5434 43.4566 0.0177002 28 0ZM42.0003 33.9998C41.9948 38.4163 38.4163 41.9948 34.0004 41.9997V43.9998C34.0004 45.1046 33.1044 46 32.0003 46C30.8955 46 30.0001 45.1046 30.0001 43.9998V41.9997H26.0005V43.9998C26.0005 45.1046 25.1045 46 24.0003 46C22.8956 46 22.0002 45.1046 22.0002 43.9998V41.9997H16.0004C14.8957 41.9997 14.0003 41.1043 14.0003 40.0002C14.0003 38.8954 14.8957 38 16.0004 38H18V18H16.0004C14.8957 18 14.0003 17.1046 14.0003 15.9998C14.0003 14.8951 14.8957 13.9997 16.0004 13.9997H22.0002V12.0002C22.0002 10.8954 22.8956 10 24.0003 10C25.1051 10 26.0005 10.8954 26.0005 12.0002V13.9997H30.0001V12.0002C30.0001 10.8954 30.8955 10 32.0003 10C33.105 10 34.0004 10.8954 34.0004 12.0002V13.9997C38.3998 13.9814 41.9814 17.5324 42.0003 21.9319C42.0101 24.2616 40.9999 26.479 39.2354 28C40.9835 29.5039 41.9924 31.6933 42.0003 33.9998Z" fill="#FFAB2D"/>
+                                            </svg>
+                                        </span>
+                                        <div class="ms-3">
+                                            <span class="fs-14 font-w400">Bitcoin</span>	
+                                            <a href="javascript:void(0);"><h4 class="font-w600 mb-0">BTC / USD</h4></a>
+                                        </div>
+                                    </div>
+                                    <div class="coin-box">
+                                        <span class="mb-1 d-block">Mark Price</span>
+                                        <div class="d-flex align-items-center">
+                                            <h5 class="font-w600 m-0 market-price-btc">
+                                                ${{ cryptos.0.quote.USD.price|floatformat:2 }}
+                                            </h5>
+
+                                            <span class="text-danger ms-2">-3.28%</span>
+                                        </div>
+                                    </div>	
+                                    <div class="coin-box">
+                                        <span class="mb-1 d-block">Funding Rate</span>
+                                        <h5 id="funding-rate" class="font-w600 m-0">Loading...</h5>
+                                    </div>
+                                    <div class="coin-box">
+                                        <span class="mb-1 d-block">Volume</span>
+                                        <h5 id="volume-usd" class="font-w600 m-0">Loading...</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="card market-overview">
+                            <div class="card-header border-0 flex-wrap pb-0">
+                                <div class="d-flex align-items-center flex-wrap mb-3 mb-sm-0">
+                                    <h4 class="card-title mb-0">Market Overview</h4>
+                                    <h4 class="fs-16 font-w500 m-0">Depth Chart</h4>
+                                    <h4 class="fs-16 font-w500 m-0">Market Details</h4>
+                                    <span>
+                                        <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7.52549 0V7.71177H0V11.2882H7.52549V19H11.4745V11.2882H19V7.71177H11.4745V0H7.52549Z" fill="var(--primary)"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-between flex-wrap">	
+                                    <div class="d-flex align-items-center">
+                                        <h4 class="me-5 font-w600 mb-0"><span class="text-success me-2">BUY</span> $5,673</h4>
+                                        <h4 class="font-w600 mb-0"><span class="text-danger me-2">SELL</span> $5,982</h4>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center  mt-md-0 mt-2">
+                                        <ul class="nav nav-pills" id="myTab1" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link active" id="Week-tab" data-bs-toggle="tab" 	data-bs-target="#Week" href="#Week"  role="tab"  aria-selected="true">Week</a>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link" id="Month-tab" data-bs-toggle="tab" data-bs-target="#Month" href="#Month"  role="tab"  aria-selected="false">Month</a>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <a class="nav-link" id="Year-tab" data-bs-toggle="tab" data-bs-target="#Year"  href="#Year"  role="tab"  aria-selected="false">Year</a>
+                                            </li>
+                                        </ul>
+                                    </div>	
+                                </div>	
+                                
+                                    
+                                <canvas id="market-chart" height="100"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-xxl-4 col-sm-6 my-order-ile-2">
+                <div class="card trade-history">
+                    <div class="card-header border-0 pb-3">
+                        <h4 class="card-title">Trade History</h4>
+                    </div>
+                    <div class="card-body pt-0 dlab-scroll height370">
+                        <div class="table-responsive">
+                            <table class="table text-center tr-rounded order-tbl">
+                                <thead>
+                                    <tr>
+                                        <th class="text-start">Price</th>
+                                        <th class="text-center">Size</th>
+                                        <th class="text-right">Side</th>
+                                        <th class="text-right">Time</th>
+                                    </tr>
+                                </thead>
+                                    <tbody>
+                                      {% for coin in cryptos|slice:":6" %}
+                                      <tr>
+                                        <td class="text-start">
+                                          ${{ coin.quote.USD.price|floatformat:2 }}
+                                        </td>
+                                        <td>10</td> <!-- Cantidad ficticia para mantener estilo -->
+                                        <td class="{% if coin.quote.USD.percent_change_24h >= 0 %}text-success{% else %}text-danger{% endif %}">
+                                          {% if coin.quote.USD.percent_change_24h >= 0 %}BUY{% else %}SELL{% endif %}
+                                        </td>
+                                        <td>{{ coin.last_updated|slice:":19"|default:"N/A" }}</td>
+                                      </tr>
+                                      {% endfor %}
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-xxl-8">
+                <div class="card">
+                    <div class="card-header border-0 ">
+                        <h4 class="heading">Bar Chart</h4>
+                        </span>
+                    </div>
+                    <div class="card-body pt-0">
+                        <div class="bar-chart d-flex justify-content-between flex-wrap align-items-baseline">
+                            <div>
+                                <div class="d-flex align-items-center">
+                                    <h3 class="font-w600">$22,562.14</h3>
+                                    <span class="fs-22 font-w400 d-block ms-2 text-success">7%<i class="fa-solid fa-caret-up"></i></span>
+                                </div>
+                                <p class="fs-14 text-dark">Last Week <span class="text-success">$563,443</span></p>
+                            </div>	
+                            <div class="d-flex justify-content-between align-items-center">
+                                <ul class="nav nav-pills me-4" id="myTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link active" id="Week-bar-tab" href="#Week-bar" data-bs-toggle="tab" data-bs-target="#Week-bar"  role="tab"  aria-selected="true">Week</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="Month-bar-tab" data-bs-toggle="tab" href="#Month-bar" data-bs-target="#Month-bar"  role="tab"  aria-selected="false">Month</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="Year-bar-tab" data-bs-toggle="tab" href="#Year-bar" data-bs-target="#Year-bar" role="tab"  aria-selected="false">Year</a>
+                                    </li>
+                                </ul>
+                            </div>	
+                        </div>
+                        <canvas id="barChart" height="100"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--**********************************
+    Content body end
+***********************************-->
+{% block additional_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const ctx = document.getElementById('market-chart')?.getContext('2d');
+    let chart = null;
+
+    const ctxBar = document.getElementById('barChart')?.getContext('2d');
+    let barChart = null;
+
+    function fetchChartData(days) {
+        fetch(`https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=${days}`)
+            .then(response => response.json())
+            .then(data => {
+                const labels = data.prices.map(price => {
+                    const date = new Date(price[0]);
+                    return `${date.getHours()}:00`;
+                });
+
+                const prices = data.prices.map(price => price[1]);
+
+                if (chart) {
+                    chart.destroy();
+                    chart = null;
+                }
+
+                setTimeout(() => {
+                    chart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'BTC Price (USD)',
+                                data: prices,
+                                fill: false,
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                tension: 0.1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: { labels: { color: '#fff' } }
+                            },
+                            scales: {
+                                x: { ticks: { color: '#ccc' } },
+                                y: { ticks: { color: '#ccc' } }
+                            }
+                        }
+                    });
+                }, 50);
+            })
+            .catch(error => console.error('Error loading chart data:', error));
+    }
+
+    function updateMarkPrice() {
+        fetch("https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd")
+            .then(response => response.json())
+            .then(data => {
+                const price = data.bitcoin.usd;
+                document.querySelectorAll(".market-price-btc").forEach(el => {
+                    el.textContent = `$${price.toLocaleString()}`;
+                });
+            })
+            .catch(err => console.error("Error fetching mark price:", err));
+    }
+
+    function updateFundingAndVolume(days) {
+        fetch(`https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=${days}`)
+            .then(response => response.json())
+            .then(data => {
+                const startPrice = data.prices[0][1];
+                const endPrice = data.prices[data.prices.length - 1][1];
+                const changePercent = ((endPrice - startPrice) / startPrice) * 100;
+
+                const fundingEl = document.getElementById("funding-rate");
+                fundingEl.textContent = `${changePercent.toFixed(2)}%`;
+                fundingEl.className = "font-w600 m-0 " + (changePercent >= 0 ? "text-success" : "text-danger");
+
+                const totalVolume = data.total_volumes.reduce((acc, point) => acc + point[1], 0);
+                const volumeFormatted = totalVolume > 1_000_000_000
+                    ? (totalVolume / 1_000_000_000).toFixed(2) + "B"
+                    : (totalVolume / 1_000_000).toFixed(2) + "M";
+
+                document.getElementById("volume-usd").textContent = volumeFormatted;
+            })
+            .catch(error => console.error("Error updating funding/volume:", error));
+    }
+    function fetchBarChartData(days) {
+        if (!ctxBar) return;
+
+        fetch(`/api/bar-chart/?days=${days}`)
+            .then(res => res.json())
+            .then(data => {
+                const quotes = Array.isArray(data.quotes)
+                    ? data.quotes
+                    : Array.isArray(data.data?.quotes)
+                    ? data.data.quotes
+                    : [];
+
+                if (!quotes.length) {
+                    console.error("No quotes data for bar chart");
+                    return;
+                }
+
+                const labels = quotes.map(q => {
+                    const dateStr = q.timestamp || q.time_open;
+                    if (typeof dateStr === "string") return dateStr.split("T")[0];
+                    if (typeof dateStr === "number") return new Date(dateStr * 1000).toISOString().split("T")[0];
+                    return "N/A";
+                });
+
+                const values = quotes.map(q => q.quote?.USD?.close ?? 0);
+
+                // ⚠️ Evita conflictos asegurándote de destruir cualquier instancia previa
+                if (barChart instanceof Chart) {
+                    barChart.destroy();
+                    barChart = null;
+                }
+
+                // Esperar un instante para garantizar que el canvas se libere completamente
+                setTimeout(() => {
+                    barChart = new Chart(ctxBar, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'BTC Close Price (USD)',
+                                data: values,
+                                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            plugins: {
+                                legend: {
+                                    labels: { color: '#fff' }
+                                }
+                            },
+                            scales: {
+                                x: { ticks: { color: '#ccc' } },
+                                y: { ticks: { color: '#ccc' } }
+                            }
+                        }
+                    });
+                }, 50); // 🔁 pequeño delay para asegurar canvas libre
+            })
+            .catch(err => console.error("Error loading bar chart:", err));
+    }
+
+
+    // Inicial
+    fetchChartData(7);
+    updateMarkPrice();
+    updateFundingAndVolume(7);
+    fetchBarChartData(7);
+
+    // Eventos
+    document.getElementById("Week-tab")?.addEventListener("click", () => {
+        fetchChartData(7);
+        updateFundingAndVolume(7);
+    });
+    document.getElementById("Month-tab")?.addEventListener("click", () => {
+        fetchChartData(30);
+        updateFundingAndVolume(30);
+    });
+    document.getElementById("Year-tab")?.addEventListener("click", () => {
+        fetchChartData(90);
+        updateFundingAndVolume(90);
+    });
+
+    document.getElementById("Week-bar-tab")?.addEventListener("click", () => {
+        fetchBarChartData(7);
+    });
+    document.getElementById("Month-bar-tab")?.addEventListener("click", () => {
+        fetchBarChartData(30);
+    });
+    document.getElementById("Year-bar-tab")?.addEventListener("click", () => {
+        fetchBarChartData(365);
+    });
+});
+</script>
+{% endblock %}
+
+
+
+
+{% endblock %}

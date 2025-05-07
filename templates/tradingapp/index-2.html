@@ -1,0 +1,911 @@
+{% extends 'tradingapp/elements/layouts/home.html' %}
+{% load static %}
+        
+{% block additional_css %}
+{% endblock %}
+		
+{% block content %}
+<!--****
+Wallet Sidebar
+****-->
+<div class=" wallet-overlay">
+	<div class="wallet-bar dlab-scroll" id="wallet-bar">	
+		<div class="closed-icon">
+			<i class="fa-solid fa-xmark"></i>
+		</div>
+	<div class="wallet-card">
+		<div class="wallet-wrapper">
+			<div class="mb-3">
+				<h5 class="fs-14 font-w400 mb-0">My Portfolio</h5>
+				<h2>${{ balance_usdc|floatformat:2 }}</h2>
+			</div>
+			<div class="text-end mb-2">
+				<span>
+					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
+						<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+							<rect x="0" y="0" width="24" height="24"/>
+							<rect fill="#ffff" opacity="0.3" x="12" y="4" width="3" height="13" rx="1.5"/>
+							<rect fill="#ffff" opacity="0.3" x="7" y="9" width="3" height="8" rx="1.5"/>
+							<path d="M5,19 L20,19 C20.5522847,19 21,19.4477153 21,20 C21,20.5522847 20.5522847,21 20,21 L4,21 C3.44771525,21 3,20.5522847 3,20 L3,4 C3,3.44771525 3.44771525,3 4,3 C4.55228475,3 5,3.44771525 5,4 L5,19 Z" fill="#ffff" fill-rule="nonzero"/>
+							<rect fill="#ffff" opacity="0.3" x="17" y="11" width="3" height="6" rx="1.5"/>
+						</g>
+					</svg>
+				</span>
+				<span class="fs-14 d-block">+2.25%</span>
+			</div>
+		</div>
+		<div class="change-btn-1">
+			<a href="javascript:void(0);" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+				<svg class="me-2 svg-main-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
+					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+					<rect x="0" y="0" width="24" height="24"/>
+					<path d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+					<rect fill="#000000" opacity="0.3" transform="translate(12.000000, 8.000000) rotate(-180.000000) translate(-12.000000, -8.000000) " x="11" y="1" width="2" height="14" rx="1"/>
+					<path d="M7.70710678,15.7071068 C7.31658249,16.0976311 6.68341751,16.0976311 6.29289322,15.7071068 C5.90236893,15.3165825 5.90236893,14.6834175 6.29289322,14.2928932 L11.2928932,9.29289322 C11.6689749,8.91681153 12.2736364,8.90091039 12.6689647,9.25670585 L17.6689647,13.7567059 C18.0794748,14.1261649 18.1127532,14.7584547 17.7432941,15.1689647 C17.3738351,15.5794748 16.7415453,15.6127532 16.3310353,15.2432941 L12.0362375,11.3779761 L7.70710678,15.7071068 Z" fill="#000000" fill-rule="nonzero" transform="translate(12.000004, 12.499999) rotate(-180.000000) translate(-12.000004, -12.499999) "/>
+				</g>
+				</svg>
+			Deposit</a>
+			<a href="javascript:void(0);" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+				<svg class="me-2 svg-main-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 24 24" version="1.1">
+					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+						<rect x="0" y="0" width="24" height="24"/>
+						<path d="M2,13 C2,12.5 2.5,12 3,12 C3.5,12 4,12.5 4,13 C4,13.3333333 4,15 4,18 C4,19.1045695 4.8954305,20 6,20 L18,20 C19.1045695,20 20,19.1045695 20,18 L20,13 C20,12.4477153 20.4477153,12 21,12 C21.5522847,12 22,12.4477153 22,13 L22,18 C22,20.209139 20.209139,22 18,22 L6,22 C3.790861,22 2,20.209139 2,18 C2,15 2,13.3333333 2,13 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
+						<rect fill="#000000" opacity="0.3" x="11" y="2" width="2" height="14" rx="1"/>
+						<path d="M12.0362375,3.37797611 L7.70710678,7.70710678 C7.31658249,8.09763107 6.68341751,8.09763107 6.29289322,7.70710678 C5.90236893,7.31658249 5.90236893,6.68341751 6.29289322,6.29289322 L11.2928932,1.29289322 C11.6689749,0.916811528 12.2736364,0.900910387 12.6689647,1.25670585 L17.6689647,5.75670585 C18.0794748,6.12616487 18.1127532,6.75845471 17.7432941,7.16896473 C17.3738351,7.57947475 16.7415453,7.61275317 16.3310353,7.24329415 L12.0362375,3.37797611 Z" fill="#000000" fill-rule="nonzero"/>
+					</g>
+				</svg>
+			Withdraw</a>
+		</div>
+	</div>
+	<div class="order-history">
+		<div class="card price-list-1 mb-0">
+			<div class="card-header border-0 pb-2 px-3">
+				<div>
+					<h4 class="text-primary card-title mb-2">Buy Order</h4>
+				</div>
+			</div>
+			<div class="card-body p-3 py-0">
+				<select id="buy-select" class="form-control custom-image-select-2 image-select mt-3 mt-sm-0 style-1">
+					<option value="BTCUSDT" data-thumbnail="{% static 'tradingapp/images/svg/btc.svg' %}" data-content="<img src='{% static 'tradingapp/images/svg/btc.svg' %}'/> Bitcoin">Bitcoin</option>
+					<option value="ETHUSDT" data-thumbnail="{% static 'tradingapp/images/svg/eth.svg' %}" data-content="<img src='{% static 'tradingapp/images/svg/eth.svg' %}'/> Ethereum">Ethereum</option>
+					<option value="SOLUSDT" data-thumbnail="{% static 'tradingapp/images/svg/sol.svg' %}" data-content="<img src='{% static 'tradingapp/images/svg/sol.svg' %}'/> Solana">Solana</option>
+					<option value="ADAUSDT" data-thumbnail="{% static 'tradingapp/images/svg/ada.svg' %}" data-content="<img src='{% static 'tradingapp/images/svg/ada.svg' %}'/> Cardano">Cardano</option>
+					<option value="XRPUSDT" data-thumbnail="{% static 'tradingapp/images/svg/xrp.svg' %}" data-content="<img src='{% static 'tradingapp/images/svg/xrp.svg' %}'/> Ripple">Ripple</option>
+					<option value="LTCUSDT" data-thumbnail="{% static 'tradingapp/images/svg/ltc.svg' %}" data-content="<img src='{% static 'tradingapp/images/svg/ltc.svg' %}'/> Litecoin">Litecoin</option>
+				</select>
+				<div class="table-responsive">
+					<table class="table text-center bg-primary-hover tr-rounded order-tbl mt-2 ">
+						<thead>
+							<tr>
+								<th class="text-start">Price</th>
+								<th class="text-center">Amount</th>
+								<th class="text-end">Total</th>
+							</tr>
+						</thead>
+						<tbody id="buy-orders-body">
+							<!-- Las filas se insertarán dinámicamente -->
+						</tbody>
+
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="card price-list style-2 border-top border-style">
+			<div class="card-header border-0 pb-2 px-3">
+				<div>
+					<h4 class="text-pink mb-2 card-title">Sell Order</h4>
+				</div>
+			</div>
+			<div class="card-body p-3 py-0">
+				<select id="sell-select" class="form-control custom-image-select-2 style-1 image-select mt-3 mt-sm-0 pink-light style-1">
+					<option value="BTCUSDT" data-thumbnail="{% static 'tradingapp/images/svg/btc.svg' %}" data-content="<img src='{% static 'tradingapp/images/svg/btc.svg' %}'/> Bitcoin">Bitcoin</option>
+					<option value="ETHUSDT" data-thumbnail="{% static 'tradingapp/images/svg/eth.svg' %}" data-content="<img src='{% static 'tradingapp/images/svg/eth.svg' %}'/> Ethereum">Ethereum</option>
+					<option value="SOLUSDT" data-thumbnail="{% static 'tradingapp/images/svg/sol.svg' %}" data-content="<img src='{% static 'tradingapp/images/svg/sol.svg' %}'/> Solana">Solana</option>
+					<option value="ADAUSDT" data-thumbnail="{% static 'tradingapp/images/svg/ada.svg' %}" data-content="<img src='{% static 'tradingapp/images/svg/ada.svg' %}'/> Cardano">Cardano</option>
+					<option value="XRPUSDT" data-thumbnail="{% static 'tradingapp/images/svg/xrp.svg' %}" data-content="<img src='{% static 'tradingapp/images/svg/xrp.svg' %}'/> Ripple">Ripple</option>
+					<option value="LTCUSDT" data-thumbnail="{% static 'tradingapp/images/svg/ltc.svg' %}" data-content="<img src='{% static 'tradingapp/images/svg/ltc.svg' %}'/> Litecoin">Litecoin</option>
+				</select>
+				<div class="table-responsive">
+					<table class="table text-center bg-pink-hover tr-rounded order-tbl mt-2">
+						<thead>
+							<tr>
+								<th class="text-start">Price</th>
+								<th class="text-center">Amount</th>
+								<th class="text-end">Total</th>
+							</tr>
+						</thead>
+						<tbody id="sell-orders-body">
+							<!-- Las filas se insertarán dinámicamente -->
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<div class="wallet-bar-close"></div>
+<!--**********************************
+	Content body start
+***********************************-->
+	<div class="content-body">
+	<!-- row -->
+		<div class="container-fluid">
+		<!-- Row -->
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="row  main-card">
+						<div class="swiper mySwiper-counter position-relative overflow-hidden">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+									<div class="card card-box bg-secondary">
+										<div class="card-header border-0 pb-0">
+											<div  class="chart-num">
+												<p>
+													{% with monedas_fijas.0.quote.USD.percent_change_30d as cambio %}
+														{% if cambio >= 0 %}
+															<i class="fa-solid fa-caret-up me-2 text-success"></i>
+															<span class="text-success">{{ cambio|floatformat:2 }}% (30d)</span>
+														{% else %}
+															<i class="fa-solid fa-caret-down me-2 text-danger"></i>
+															<span class="text-danger">{{ cambio|floatformat:2 }}% (30d)</span>
+														{% endif %}
+													{% endwith %}
+												</p>
+												<h2 class="font-w600 mb-0">${{ monedas_fijas.2.quote.USD.price|floatformat:2 }}</h2>
+											</div>
+											<div class="dlab-swiper-circle">
+												<img src="https://s2.coinmarketcap.com/static/img/coins/64x64/{{ monedas_fijas.2.id }}.png"
+													 alt="{{ monedas_fijas.2.symbol }}"
+													 style="width: 32px; height: 32px; border-radius: 50%; background: white; padding: 4px;">
+											</div>
+
+										</div>
+										<div class="card-body p-0">
+											<div id="widgetChart1" class="chart-primary"></div>
+										</div>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="card card-box bg-dark">
+										<div class="card-header border-0 pb-0">
+											<div class="chart-num">
+												<p>
+													{% with monedas_fijas.0.quote.USD.percent_change_30d as cambio %}
+														{% if cambio >= 0 %}
+															<i class="fa-solid fa-caret-up me-2 text-success"></i>
+															<span class="text-success">{{ cambio|floatformat:2 }}% (30d)</span>
+														{% else %}
+															<i class="fa-solid fa-caret-down me-2 text-danger"></i>
+															<span class="text-danger">{{ cambio|floatformat:2 }}% (30d)</span>
+														{% endif %}
+													{% endwith %}
+												</p>
+												<h2 class="font-w600 mb-0">${{ monedas_fijas.4.quote.USD.price|floatformat:2 }}</h2>
+											</div>
+											<div class="dlab-swiper-circle">
+												<img src="https://s2.coinmarketcap.com/static/img/coins/64x64/{{ monedas_fijas.4.id }}.png"
+												 alt="{{ monedas_fijas.4.symbol }}"
+												 style="width: 32px; height: 32px; border-radius: 50%; background: white; padding: 4px;">
+										</div>
+										</div>
+										<div class="card-body p-0">
+											<div id="widgetChart2" class="chart-primary"></div>
+										</div>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="card card-box bg-warning">
+										<div class="card-header border-0 pb-0">
+											<div class="chart-num">
+												<p>
+													{% with monedas_fijas.1.quote.USD.percent_change_30d as cambio %}
+														{% if cambio >= 0 %}
+															<i class="fa-solid fa-caret-up me-2 text-success"></i>
+															<span class="text-success">{{ cambio|floatformat:2 }}% (30d)</span>
+														{% else %}
+															<i class="fa-solid fa-caret-down me-2 text-danger"></i>
+															<span class="text-danger">{{ cambio|floatformat:2 }}% (30d)</span>
+														{% endif %}
+													{% endwith %}
+												</p>
+												<h2 class="font-w600 mb-0">${{ monedas_fijas.0.quote.USD.price|floatformat:2 }}</h2>
+											</div>
+											<div class="dlab-swiper-circle">
+												<img src="https://s2.coinmarketcap.com/static/img/coins/64x64/{{ monedas_fijas.0.id }}.png"
+													 alt="{{ monedas_fijas.0.symbol }}"
+													 style="width: 32px; height: 32px; border-radius: 50%; background: white; padding: 4px;">
+											</div>
+										</div>
+										<div class="card-body p-0">
+											<div id="widgetChart3" class="chart-primary"></div>
+										</div>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="card card-box bg-pink">
+										<div class="card-header border-0 pb-0">
+											<div class="chart-num">
+												<p>
+													{% with monedas_fijas.2.quote.USD.percent_change_30d as cambio %}
+														{% if cambio >= 0 %}
+															<i class="fa-solid fa-caret-up me-2 text-success"></i>
+															<span class="text-success">{{ cambio|floatformat:2 }}% (30d)</span>
+														{% else %}
+															<i class="fa-solid fa-caret-down me-2 text-danger"></i>
+															<span class="text-danger">{{ cambio|floatformat:2 }}% (30d)</span>
+														{% endif %}
+													{% endwith %}
+												</p>
+												<h2 class="font-w600 mb-0">${{ monedas_fijas.1.quote.USD.price|floatformat:2 }}</h2>
+											</div>
+											<div class="dlab-swiper-circle">
+												<img src="https://s2.coinmarketcap.com/static/img/coins/64x64/{{ monedas_fijas.1.id }}.png"
+													 alt="{{ monedas_fijas.1.symbol }}"
+													 style="width: 32px; height: 32px; border-radius: 50%; background: white; padding: 4px;">
+											</div>
+										</div>
+										<div class="card-body p-0">
+											<div id="widgetChart4" class="chart-primary"></div>
+										</div>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="card card-box bg-secondary">
+										<div class="card-header border-0 pb-0">
+											<div  class="chart-num">
+												<p>
+													{% with monedas_fijas.3.quote.USD.percent_change_30d as cambio %}
+														{% if cambio >= 0 %}
+															<i class="fa-solid fa-caret-up me-2 text-success"></i>
+															<span class="text-success">{{ cambio|floatformat:2 }}% (30d)</span>
+														{% else %}
+															<i class="fa-solid fa-caret-down me-2 text-danger"></i>
+															<span class="text-danger">{{ cambio|floatformat:2 }}% (30d)</span>
+														{% endif %}
+													{% endwith %}
+												</p>
+												<h2 class="font-w600 mb-0">${{ monedas_fijas.5.quote.USD.price|floatformat:2 }}</h2>
+											</div>
+											<div class="dlab-swiper-circle">
+												<img src="https://s2.coinmarketcap.com/static/img/coins/64x64/{{ monedas_fijas.5.id }}.png"
+													 alt="{{ monedas_fijas.5.symbol }}"
+													 style="width: 32px; height: 32px; border-radius: 50%; background: white; padding: 4px;">
+											</div>
+										</div>
+										<div class="card-body p-0">
+											<div id="widgetChart5" class="chart-primary"></div>
+										</div>
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="card card-box bg-pink">
+										<div class="card-header border-0 pb-0">
+											<div class="chart-num">
+												<p>
+													{% with monedas_fijas.4.quote.USD.percent_change_30d as cambio %}
+														{% if cambio >= 0 %}
+															<i class="fa-solid fa-caret-up me-2 text-success"></i>
+															<span class="text-success">{{ cambio|floatformat:2 }}% (30d)</span>
+														{% else %}
+															<i class="fa-solid fa-caret-down me-2 text-danger"></i>
+															<span class="text-danger">{{ cambio|floatformat:2 }}% (30d)</span>
+														{% endif %}
+													{% endwith %}
+												</p>
+												<h2 class="font-w600 mb-0">${{ monedas_fijas.3.quote.USD.price|floatformat:2 }}</h2>
+											</div>
+											<div class="dlab-swiper-circle">
+												<img src="https://s2.coinmarketcap.com/static/img/coins/64x64/{{ monedas_fijas.3.id }}.png"
+													 alt="{{ monedas_fijas.3.symbol }}"
+													 style="width: 32px; height: 32px; border-radius: 50%; background: white; padding: 4px;">
+											</div>
+										</div>
+										<div class="card-body p-0">
+											<div id="widgetChart6" class="chart-primary"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xl-6">
+							<div class="card crypto-chart">
+								<div class="card-header pb-0 border-0 flex-wrap">
+									<div class="mb-0">
+										<h4 class="card-title">Crypto Statistics</h4>
+										<p>Lineal chart</p>
+									</div>
+									<div class="d-flex mb-2">
+										<div class="form-check form-switch toggle-switch me-3">
+											<label class="form-check-label" for="flexSwitchCheckChecked1">Date</label>
+											<input class="form-check-input custome" type="checkbox" id="flexSwitchCheckChecked1" checked="">
+										</div>
+										<div class="form-check form-switch toggle-switch">
+											<label class="form-check-label" for="flexSwitchCheckChecked2">Value</label>
+											<input class="form-check-input custome" type="checkbox" id="flexSwitchCheckChecked2" checked="">
+										</div>
+									</div>
+								</div>
+								<div class="card-body pt-2">
+									<ul class="nav nav-tabs" role="tablist">
+									  <li class="nav-item">
+										<a class="nav-link active" data-bs-toggle="tab" href="#chart-btc" role="tab">BTC</a>
+									  </li>
+									  <li class="nav-item">
+										<a class="nav-link" data-bs-toggle="tab" href="#chart-eth" role="tab">ETH</a>
+									  </li>
+									  <li class="nav-item">
+										<a class="nav-link" data-bs-toggle="tab" href="#chart-sol" role="tab">SOL</a>
+									  </li>
+									  <li class="nav-item">
+										<a class="nav-link" data-bs-toggle="tab" href="#chart-ada" role="tab">ADA</a>
+									  </li>
+									  <li class="nav-item">
+										<a class="nav-link" data-bs-toggle="tab" href="#chart-xrp" role="tab">XRP</a>
+									  </li>
+									  <li class="nav-item">
+										<a class="nav-link" data-bs-toggle="tab" href="#chart-ltc" role="tab">LTC</a>
+									  </li>
+									</ul>
+
+									<div class="tab-content pt-3">
+									  <div class="tab-pane fade show active" id="chart-btc" role="tabpanel">
+										<canvas id="canvas-btc" height="120"></canvas>
+									  </div>
+									  <div class="tab-pane fade" id="chart-eth" role="tabpanel">
+										<canvas id="canvas-eth" height="120"></canvas>
+									  </div>
+									  <div class="tab-pane fade" id="chart-sol" role="tabpanel">
+										<canvas id="canvas-sol" height="120"></canvas>
+									  </div>
+									  <div class="tab-pane fade" id="chart-ada" role="tabpanel">
+										<canvas id="canvas-ada" height="120"></canvas>
+									  </div>
+									  <div class="tab-pane fade" id="chart-xrp" role="tabpanel">
+										<canvas id="canvas-xrp" height="120"></canvas>
+									  </div>
+									  <div class="tab-pane fade" id="chart-ltc" role="tabpanel">
+										<canvas id="canvas-ltc" height="120"></canvas>
+									  </div>
+									</div>
+
+									<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+									<script>
+									const monedas = {
+									  "BTC": "bitcoin",
+									  "ETH": "ethereum",
+									  "SOL": "solana",
+									  "ADA": "cardano",
+									  "XRP": "ripple",
+									  "LTC": "litecoin"
+									};
+
+									function fetchAndDrawChart(symbol) {
+										const cg_id = monedas[symbol];
+										fetch(`https://api.coingecko.com/api/v3/coins/${cg_id}/market_chart?vs_currency=usd&days=30`)
+											.then(res => res.json())
+											.then(data => {
+												const labels = data.prices.map(p => {
+													const date = new Date(p[0]);
+													return `${date.getMonth()+1}/${date.getDate()}`;
+												});
+												const prices = data.prices.map(p => p[1]);
+
+												const ctx = document.getElementById('canvas-' + symbol.toLowerCase()).getContext('2d');
+												new Chart(ctx, {
+													type: 'line',
+													data: {
+														labels: labels,
+														datasets: [{
+															label: symbol + ' Price (USD)',
+															data: prices,
+															borderColor: '#00f',
+															backgroundColor: 'rgba(0, 0, 255, 0.1)',
+															fill: true,
+															tension: 0.4
+														}]
+													},
+													options: {
+														responsive: true,
+														plugins: { legend: { display: false } },
+														scales: {
+															x: { display: true },
+															y: { display: true }
+														}
+													}
+												});
+											});
+									}
+
+									// Inicializar todos los gráficos al cargar
+									window.addEventListener("DOMContentLoaded", () => {
+										Object.keys(monedas).forEach(symbol => fetchAndDrawChart(symbol));
+									});
+									</script>
+
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-6">
+							<div class="card market-chart">
+								<div class="card-header border-0 pb-0 flex-wrap">
+									<div class="mb-0">
+										<h4 class="card-title">Market Overview</h4>
+										<p>CoinMarketCap (BTC)</p>
+									</div>
+								</div>
+								<div class="card-body pt-2">
+									<canvas id="candlestick-btc" height="120"></canvas>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div class="col-lg-12">
+						<div class="card transaction-table">
+							<div class="card-header border-0 flex-wrap pb-0">
+								<div class="mb-2">
+									<h4 class="card-title">Recent Transactions</h4>
+									<p class="mb-sm-3 mb-0">Lorem ipsum dolor sit amet, consectetur</p>
+								</div>
+								<ul class="float-end nav nav-pills mb-2">
+									<li class="nav-item" role="presentation">
+										<button class="nav-link active" id="Week-tab" data-bs-toggle="tab" data-bs-target="#Week" type="button" role="tab" aria-controls="month" aria-selected="true">Week</button>
+									</li>
+									<li class="nav-item" role="presentation">
+										<button class="nav-link" id="month-tab" data-bs-toggle="tab" data-bs-target="#month" type="button" role="tab" aria-controls="month" aria-selected="false">Month</button>
+									</li>
+									<li class="nav-item" role="presentation">
+										<button class="nav-link" id="year-tab" data-bs-toggle="tab" data-bs-target="#year" type="button" role="tab" aria-controls="year" aria-selected="false">Year</button>
+									</li>
+								</ul>
+							</div>
+							<div class="card-body p-0">
+								<div class="tab-content" id="myTabContent1">
+									<div class="tab-pane fade show active" id="Week" role="tabpanel" aria-labelledby="Week-tab">
+										<div class="table-responsive">
+											<table class="table table-responsive-md">
+												<thead>
+													<tr>
+														<th>
+															#
+														</th>
+														<th>Transaction ID</th>
+														<th>Date</th>
+														<th>From</th>
+														<th>To</th>
+														<th>Coin</th>
+														<th>Amount</th>
+														<th class="text-end">Status</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>
+															<svg class="arrow svg-main-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																	<polygon points="0 0 24 0 24 24 0 24"/>
+																	<rect fill="#fff" opacity="0.3" transform="translate(11.646447, 12.853553) rotate(-315.000000) translate(-11.646447, -12.853553) " x="10.6464466" y="5.85355339" width="2" height="14" rx="1"/>
+																	<path d="M8.1109127,8.90380592 C7.55862795,8.90380592 7.1109127,8.45609067 7.1109127,7.90380592 C7.1109127,7.35152117 7.55862795,6.90380592 8.1109127,6.90380592 L16.5961941,6.90380592 C17.1315855,6.90380592 17.5719943,7.32548256 17.5952502,7.8603687 L17.9488036,15.9920967 C17.9727933,16.5438602 17.5449482,17.0106003 16.9931847,17.0345901 C16.4414212,17.0585798 15.974681,16.6307346 15.9506913,16.0789711 L15.6387276,8.90380592 L8.1109127,8.90380592 Z" fill="#fff" fill-rule="nonzero"/>
+																</g>
+															</svg>
+														</td>
+														<td>#12415346563475</td>
+														<td>01 August 2020</td>
+														<td>Thomas</td>
+														<td><div class="d-flex align-items-center"><img src="{% static 'tradingapp/images/avatar/1.jpg' %}" class=" me-2" width="30" alt=""> <span class="w-space-no">Dr. Jackson</span></div></td>
+														<td><div class="d-flex align-items-center"><img src="{% static 'tradingapp/images/svg/btc.svg' %}" alt="" class="me-2 img-btc">Bitcoin</div></td>
+														<td class="text-success font-w600">+$5,553</td>
+														<td  class="text-end"><div class="badge badge-sm badge-success">COMPLETED</div></td>
+													</tr>
+													<tr>
+														<td>
+															<svg class="arrow style-1 svg-main-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																	<polygon points="0 0 24 0 24 24 0 24"/>
+																	<rect fill="#fff" opacity="0.3" transform="translate(11.646447, 12.853553) rotate(-315.000000) translate(-11.646447, -12.853553) " x="10.6464466" y="5.85355339" width="2" height="14" rx="1"/>
+																	<path d="M8.1109127,8.90380592 C7.55862795,8.90380592 7.1109127,8.45609067 7.1109127,7.90380592 C7.1109127,7.35152117 7.55862795,6.90380592 8.1109127,6.90380592 L16.5961941,6.90380592 C17.1315855,6.90380592 17.5719943,7.32548256 17.5952502,7.8603687 L17.9488036,15.9920967 C17.9727933,16.5438602 17.5449482,17.0106003 16.9931847,17.0345901 C16.4414212,17.0585798 15.974681,16.6307346 15.9506913,16.0789711 L15.6387276,8.90380592 L8.1109127,8.90380592 Z" fill="#fff" fill-rule="nonzero"/>
+																</g>
+															</svg>
+														</td>
+														<td>#12415346563475</td>
+														<td>01 August 2020</td>
+														<td>Thomas</td>
+														<td><div class="d-flex align-items-center"><img src="{% static 'tradingapp/images/avatar/2.jpg' %}" class=" me-2" width="30" alt=""> <span class="w-space-no">Dr. Jackson</span></div></td>
+														<td><div class="d-flex align-items-center"><img src="{% static 'tradingapp/images/svg/btc.svg' %}" alt="" class="me-2 img-btc">Bitcoin</div></td>
+														<td class="text-success font-w600">+$5,553</td>
+														<td class="text-end"><div class="badge badge-sm badge-warning">PENDING</div></td>
+													</tr>
+													<tr>
+														<td>
+															<svg class="arrow style-2 svg-main-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																	<polygon points="0 0 24 0 24 24 0 24"/>
+																	<rect fill="#fff" opacity="0.3" transform="translate(11.646447, 12.853553) rotate(-315.000000) translate(-11.646447, -12.853553) " x="10.6464466" y="5.85355339" width="2" height="14" rx="1"/>
+																	<path d="M8.1109127,8.90380592 C7.55862795,8.90380592 7.1109127,8.45609067 7.1109127,7.90380592 C7.1109127,7.35152117 7.55862795,6.90380592 8.1109127,6.90380592 L16.5961941,6.90380592 C17.1315855,6.90380592 17.5719943,7.32548256 17.5952502,7.8603687 L17.9488036,15.9920967 C17.9727933,16.5438602 17.5449482,17.0106003 16.9931847,17.0345901 C16.4414212,17.0585798 15.974681,16.6307346 15.9506913,16.0789711 L15.6387276,8.90380592 L8.1109127,8.90380592 Z" fill="#fff" fill-rule="nonzero"/>
+																</g>
+															</svg>
+														</td>
+														<td>#12415346563475</td>
+														<td>01 August 2020</td>
+														<td>Thomas</td>
+														<td><div class="d-flex align-items-center"><img src="{% static 'tradingapp/images/avatar/3.jpg' %}" class="me-2" width="30" alt=""> <span class="w-space-no">Dr. Jackson</span></div></td>
+														<td><div class="d-flex align-items-center"><img src="{% static 'tradingapp/images/svg/btc.svg' %}" alt="" class="me-2 img-btc">Bitcoin</div></td>
+														<td class="text-danger font-w600">+$5,553</td>
+														<td class="text-end"><div class="badge badge-sm badge-danger">CANCEL</div></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div class="tab-pane fade show" id="month" role="tabpanel" aria-labelledby="month-tab">
+										<div class="table-responsive">
+											<table class="table table-responsive-md">
+												<thead>
+													<tr>
+														<th>
+															#
+														</th>
+														<th>Transaction ID</th>
+														<th>Date</th>
+														<th>From</th>
+														<th>To</th>
+														<th>Coin</th>
+														<th>Amount</th>
+														<th class="text-end">Status</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>
+															<svg class="arrow style-1 svg-main-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																	<polygon points="0 0 24 0 24 24 0 24"/>
+																	<rect fill="#fff" opacity="0.3" transform="translate(11.646447, 12.853553) rotate(-315.000000) translate(-11.646447, -12.853553) " x="10.6464466" y="5.85355339" width="2" height="14" rx="1"/>
+																	<path d="M8.1109127,8.90380592 C7.55862795,8.90380592 7.1109127,8.45609067 7.1109127,7.90380592 C7.1109127,7.35152117 7.55862795,6.90380592 8.1109127,6.90380592 L16.5961941,6.90380592 C17.1315855,6.90380592 17.5719943,7.32548256 17.5952502,7.8603687 L17.9488036,15.9920967 C17.9727933,16.5438602 17.5449482,17.0106003 16.9931847,17.0345901 C16.4414212,17.0585798 15.974681,16.6307346 15.9506913,16.0789711 L15.6387276,8.90380592 L8.1109127,8.90380592 Z" fill="#fff" fill-rule="nonzero"/>
+																</g>
+															</svg>
+														</td>
+														<td>#12415346563475</td>
+														<td>01 August 2020</td>
+														<td>Thomas</td>
+														<td><div class="d-flex align-items-center"><img src="{% static 'tradingapp/images/avatar/2.jpg' %}" class=" me-2" width="24" alt=""> <span class="w-space-no">Dr. Jackson</span></div></td>
+														<td><div class="d-flex align-items-center"><img src="{% static 'tradingapp/images/svg/btc.svg' %}" alt="" class="me-2 img-btc">Bitcoin</div></td>
+														<td>+$5,553</td>
+														<td class="text-end"><div class="badge badge-sm badge-warning">PENDING</div></td>
+													</tr>
+													<tr>
+														<td>
+															<svg class="arrow svg-main-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																	<polygon points="0 0 24 0 24 24 0 24"/>
+																	<rect fill="#fff" opacity="0.3" transform="translate(11.646447, 12.853553) rotate(-315.000000) translate(-11.646447, -12.853553) " x="10.6464466" y="5.85355339" width="2" height="14" rx="1"/>
+																	<path d="M8.1109127,8.90380592 C7.55862795,8.90380592 7.1109127,8.45609067 7.1109127,7.90380592 C7.1109127,7.35152117 7.55862795,6.90380592 8.1109127,6.90380592 L16.5961941,6.90380592 C17.1315855,6.90380592 17.5719943,7.32548256 17.5952502,7.8603687 L17.9488036,15.9920967 C17.9727933,16.5438602 17.5449482,17.0106003 16.9931847,17.0345901 C16.4414212,17.0585798 15.974681,16.6307346 15.9506913,16.0789711 L15.6387276,8.90380592 L8.1109127,8.90380592 Z" fill="#fff" fill-rule="nonzero"/>
+																</g>
+															</svg>
+														</td>
+														<td>#12415346563475</td>
+														<td>01 August 2020</td>
+														<td>Thomas</td>
+														<td><div class="d-flex align-items-center"><img src="{% static 'tradingapp/images/avatar/1.jpg' %}" class=" me-2" width="24" alt=""> <span class="w-space-no">Dr. Jackson</span></div></td>
+														<td><div class="d-flex align-items-center"><img src="{% static 'tradingapp/images/svg/btc.svg' %}" alt="" class="me-2 img-btc">Bitcoin</div></td>
+														<td>+$5,553</td>
+														<td  class="text-end"><div class="badge badge-sm badge-success">COMPLETED</div></td>
+													</tr>
+													<tr>
+														<td>
+															<svg class="arrow style-2 svg-main-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																	<polygon points="0 0 24 0 24 24 0 24"/>
+																	<rect fill="#fff" opacity="0.3" transform="translate(11.646447, 12.853553) rotate(-315.000000) translate(-11.646447, -12.853553) " x="10.6464466" y="5.85355339" width="2" height="14" rx="1"/>
+																	<path d="M8.1109127,8.90380592 C7.55862795,8.90380592 7.1109127,8.45609067 7.1109127,7.90380592 C7.1109127,7.35152117 7.55862795,6.90380592 8.1109127,6.90380592 L16.5961941,6.90380592 C17.1315855,6.90380592 17.5719943,7.32548256 17.5952502,7.8603687 L17.9488036,15.9920967 C17.9727933,16.5438602 17.5449482,17.0106003 16.9931847,17.0345901 C16.4414212,17.0585798 15.974681,16.6307346 15.9506913,16.0789711 L15.6387276,8.90380592 L8.1109127,8.90380592 Z" fill="#fff" fill-rule="nonzero"/>
+																</g>
+															</svg>
+														</td>
+														<td>#12415346563475</td>
+														<td>01 August 2020</td>
+														<td>Thomas</td>
+														<td><div class="d-flex align-items-center"><img src="{% static 'tradingapp/images/avatar/3.jpg' %}" class=" me-2" width="24" alt=""> <span class="w-space-no">Dr. Jackson</span></div></td>
+														<td><div class="d-flex align-items-center"><img src="{% static 'tradingapp/images/svg/btc.svg' %}" alt="" class="me-2 img-btc">Bitcoin</div></td>
+														<td>+$5,553</td>
+														<td class="text-end"><div class="badge badge-sm badge-danger">CANCEL</div></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<div class="tab-pane fade show" id="year" role="tabpanel" aria-labelledby="year-tab">
+										<div class="table-responsive">
+											<table class="table table-responsive-md">
+												<thead>
+													<tr>
+														<th>
+															#
+														</th>
+														<th>Transaction ID</th>
+														<th>Date</th>
+														<th>From</th>
+														<th>To</th>
+														<th>Coin</th>
+														<th>Amount</th>
+														<th class="text-end">Status</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>
+															<svg class="arrow svg-main-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																	<polygon points="0 0 24 0 24 24 0 24"/>
+																	<rect fill="#fff" opacity="0.3" transform="translate(11.646447, 12.853553) rotate(-315.000000) translate(-11.646447, -12.853553) " x="10.6464466" y="5.85355339" width="2" height="14" rx="1"/>
+																	<path d="M8.1109127,8.90380592 C7.55862795,8.90380592 7.1109127,8.45609067 7.1109127,7.90380592 C7.1109127,7.35152117 7.55862795,6.90380592 8.1109127,6.90380592 L16.5961941,6.90380592 C17.1315855,6.90380592 17.5719943,7.32548256 17.5952502,7.8603687 L17.9488036,15.9920967 C17.9727933,16.5438602 17.5449482,17.0106003 16.9931847,17.0345901 C16.4414212,17.0585798 15.974681,16.6307346 15.9506913,16.0789711 L15.6387276,8.90380592 L8.1109127,8.90380592 Z" fill="#fff" fill-rule="nonzero"/>
+																</g>
+															</svg>
+														</td>
+														<td>#12415346563475</td>
+														<td>01 August 2020</td>
+														<td>Thomas</td>
+														<td><div class="d-flex align-items-center"><img src="{% static 'tradingapp/images/avatar/1.jpg' %}" class=" me-2" width="24" alt=""> <span class="w-space-no">Dr. Jackson</span></div></td>
+														<td><div class="d-flex align-items-center"><img src="{% static 'tradingapp/images/svg/btc.svg' %}" alt="" class="me-2 img-btc">Bitcoin</div></td>
+														<td>+$5,553</td>
+														<td  class="text-end"><div class="badge badge-sm badge-success">COMPLETED</div></td>
+													</tr>
+													<tr>
+														<td>
+															<svg class="arrow style-1 svg-main-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																	<polygon points="0 0 24 0 24 24 0 24"/>
+																	<rect fill="#fff" opacity="0.3" transform="translate(11.646447, 12.853553) rotate(-315.000000) translate(-11.646447, -12.853553) " x="10.6464466" y="5.85355339" width="2" height="14" rx="1"/>
+																	<path d="M8.1109127,8.90380592 C7.55862795,8.90380592 7.1109127,8.45609067 7.1109127,7.90380592 C7.1109127,7.35152117 7.55862795,6.90380592 8.1109127,6.90380592 L16.5961941,6.90380592 C17.1315855,6.90380592 17.5719943,7.32548256 17.5952502,7.8603687 L17.9488036,15.9920967 C17.9727933,16.5438602 17.5449482,17.0106003 16.9931847,17.0345901 C16.4414212,17.0585798 15.974681,16.6307346 15.9506913,16.0789711 L15.6387276,8.90380592 L8.1109127,8.90380592 Z" fill="#fff" fill-rule="nonzero"/>
+																</g>
+															</svg>
+														</td>
+														<td>#12415346563475</td>
+														<td>01 August 2020</td>
+														<td>Thomas</td>
+														<td><div class="d-flex align-items-center"><img src="{% static 'tradingapp/images/avatar/2.jpg' %}" class=" me-2" width="24" alt=""> <span class="w-space-no">Dr. Jackson</span></div></td>
+														<td><div class="d-flex align-items-center"><img src="{% static 'tradingapp/images/svg/btc.svg' %}" alt="" class="me-2 img-btc">Bitcoin</div></td>
+														<td>+$5,553</td>
+														<td class="text-end"><div class="badge badge-sm badge-warning">PENDING</div></td>
+													</tr>
+													<tr>
+														<td>
+															<svg class="arrow style-2 svg-main-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+																<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+																	<polygon points="0 0 24 0 24 24 0 24"/>
+																	<rect fill="#fff" opacity="0.3" transform="translate(11.646447, 12.853553) rotate(-315.000000) translate(-11.646447, -12.853553) " x="10.6464466" y="5.85355339" width="2" height="14" rx="1"/>
+																	<path d="M8.1109127,8.90380592 C7.55862795,8.90380592 7.1109127,8.45609067 7.1109127,7.90380592 C7.1109127,7.35152117 7.55862795,6.90380592 8.1109127,6.90380592 L16.5961941,6.90380592 C17.1315855,6.90380592 17.5719943,7.32548256 17.5952502,7.8603687 L17.9488036,15.9920967 C17.9727933,16.5438602 17.5449482,17.0106003 16.9931847,17.0345901 C16.4414212,17.0585798 15.974681,16.6307346 15.9506913,16.0789711 L15.6387276,8.90380592 L8.1109127,8.90380592 Z" fill="#fff" fill-rule="nonzero"/>
+																</g>
+															</svg>
+														</td>
+														<td>#12415346563475</td>
+														<td>01 August 2020</td>
+														<td>Thomas</td>
+														<td><div class="d-flex align-items-center"><img src="{% static 'tradingapp/images/avatar/3.jpg' %}" class=" me-2" width="24" alt=""> <span class="w-space-no">Dr. Jackson</span></div></td>
+														<td><div class="d-flex align-items-center"><img src="{% static 'tradingapp/images/svg/btc.svg' %}"  alt="" class="me-2 img-btc">Bitcoin</div></td>
+														<td>+$5,553</td>
+														<td class="text-end"><div class="badge badge-sm badge-danger">CANCEL</div></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- modal-box-strat -->
+<div class="modal fade" id="exampleModal2" tabindex="-1"  aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+	<div class="modal-content">
+		<div class="modal-header ">
+		<h5 class="modal-title">Make Payment</h5>
+		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			<label class="form-label">Payment method</label>
+			<div>
+				<select class="image-select default-select dashboard-select w-100 mb-3" aria-label="Default">
+					<option selected>Open this select menu</option>
+					<option value="1">Bank Card</option>
+					<option value="2">Online</option>
+					<option value="3">Cash On Time</option>
+				</select>
+			</div>
+			<label class="form-label">Amount</label>
+			<input type="number" class="form-control mb-3" id="exampleInputEmail4"  placeholder="Rupee">
+			<label class="form-label">Card Holder Name</label>
+			<input type="number" class="form-control mb-3" id="exampleInputEmail5"  placeholder="Amount">
+			<label class="form-label">Card Name</label>
+			<input type="text" class="form-control mb-3" id="exampleInputEmail6"  placeholder="Amount">
+		</div>
+		<div class="modal-footer">
+		<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+		<button type="button" class="btn btn-primary">Save changes</button>
+		</div>
+	</div>
+	</div>
+</div>
+
+<div class="modal fade" id="exampleModal1" tabindex="-1"  aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+			    <div class="modal-content">
+				  <form method="POST" action="{% url 'tradingapp:deposit_funds' %}">
+					  {% csrf_token %}
+					  <div class="modal-header">
+						<h5 class="modal-title">Make Payment</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					  </div>
+					  <div class="modal-body">
+						<label class="form-label">Seller Mobile Number</label>
+						<input type="text" name="seller_mobile" class="form-control mb-3" placeholder="Number" required>
+
+						<label class="form-label">Product Name</label>
+						<input type="text" name="product_name" class="form-control mb-3" placeholder="Name" required>
+
+						<label class="form-label">Amount</label>
+						<input type="number" name="amount" step="0.01" class="form-control mb-3" placeholder="Amount" required>
+					  </div>
+					  <div class="modal-footer">
+						<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Save changes</button>
+					  </div>
+				  </form>
+
+				</div>
+			  </div>
+		</div>
+<!--**********************************
+	Content body end
+***********************************-->
+
+
+
+{% endblock %}
+
+{% block additional_js %}
+<!-- Cargar Chart.js core y plugin de velas -->
+<!-- Chart.js y plugin financiero -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+
+<script>
+let btcChart = null;
+
+function fetchAndDrawBTCChart() {
+    fetch('/api/candlestick/BTC/')
+        .then(res => res.json())
+        .then(data => {
+            const ctx = document.getElementById('candlestick-btc').getContext('2d');
+            if (btcChart) btcChart.destroy();
+
+            btcChart = new Chart(ctx, {
+                type: 'candlestick',
+                data: {
+                    datasets: [{
+                        label: 'BTC/USD',
+                        data: data.map(d => ({
+                            x: d.timestamp,
+                            o: d.open,
+                            h: d.high,
+                            l: d.low,
+                            c: d.close
+                        })),
+                        color: {
+                            up: '#00ff99',
+                            down: '#ff3377',
+                            unchanged: '#999999'
+                        }
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        x: {
+                            type: 'time',
+                            time: {
+                                unit: 'day'
+                            }
+                        },
+                        y: {
+                            beginAtZero: false
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+        })
+        .catch(err => console.error("Error cargando velas:", err));
+}
+
+window.addEventListener("DOMContentLoaded", fetchAndDrawBTCChart);
+</script>
+
+<script>
+async function loadOrderBookBinance(symbol = 'BTCUSDT') {
+    try {
+        const res = await fetch(`https://api.binance.com/api/v3/depth?symbol=${symbol}&limit=8`);
+        const data = await res.json();
+
+        const formatRow = (price, amount) => {
+            price = parseFloat(price);
+            amount = parseFloat(amount);
+            const total = (price * amount).toFixed(2);
+            return `
+              <tr>
+                  <td class="text-start">${price.toFixed(2)}</td>
+                  <td>${amount.toFixed(4)}</td>
+                  <td class="text-end">$${total}</td>
+              </tr>`;
+        };
+
+        document.getElementById('buy-orders-body').innerHTML = data.bids.map(b => formatRow(b[0], b[1])).join('');
+        document.getElementById('sell-orders-body').innerHTML = data.asks.map(a => formatRow(a[0], a[1])).join('');
+
+    } catch (err) {
+        console.error('Error cargando order book:', err);
+    }
+}
+
+// Evento al cambiar la moneda
+function setupOrderBookSelectListeners() {
+    const mapSymbols = {
+        'Bitcoin': 'BTCUSDT',
+        'Ethereum': 'ETHUSDT',
+        'Dash Coin': 'DASHUSDT',
+        'Ripple': 'XRPUSDT'
+    };
+
+    const buySelect = document.getElementById('buy-select');
+    const sellSelect = document.getElementById('sell-select');
+
+    if (buySelect) {
+        buySelect.addEventListener('change', (e) => {
+            const selected = e.target.options[e.target.selectedIndex].text.trim();
+            loadOrderBookBinance(mapSymbols[selected] || 'BTCUSDT');
+        });
+    }
+
+    if (sellSelect) {
+        sellSelect.addEventListener('change', (e) => {
+            const selected = e.target.options[e.target.selectedIndex].text.trim();
+            loadOrderBookBinance(mapSymbols[selected] || 'BTCUSDT');
+        });
+    }
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+    loadOrderBookBinance();  // default BTC
+    setupOrderBookSelectListeners();  // add listeners
+});
+</script>
+
+
+<!-- Código de dlabSettings -->
+<script>
+jQuery(document).ready(function(){
+    setTimeout(function(){
+        dlabSettingsOptions.version = 'dark';
+        new dlabSettings(dlabSettingsOptions);
+    },1500)
+});
+</script>
+
+{% endblock %}
+
+
+
+
+

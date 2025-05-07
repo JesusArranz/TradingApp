@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+    {% load static custom_tags %}
+    {% load socialaccount %}
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ dz_array.public.description }}" />
+    <meta property="og:title" content="{{ dz_array.public.og_title }}" />
+    <meta property="og:description" content="{{ dz_array.public.og_description }}" />
+    <meta property="og:image" content="{{ dz_array.public.og_image }}" />
+    <meta name="format-detection" content="telephone=no">
+
+    <title>{{ dz_array.public.title }}</title>
+
+    <link rel="shortcut icon" type="image/png" href="{% static dz_array.public.favicon %}" />
+    {% for cssurl in dz_array.pagelevel.tradingapp.tradingapp_views.css|getdata:request.path %}
+    <link rel="stylesheet" href="{% static cssurl %}">
+    {% endfor %}
+    {% for cssurl in dz_array.global.css %}
+    <link rel="stylesheet" href="{% static cssurl %}">
+    {% endfor %}
+    {% block additional_css %}{% endblock %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
+</head>
+
+<body class="body">
+    <div class="authincation d-flex flex-column flex-lg-row flex-column-fluid">
+        <!-- Aside izquierdo -->
+        <div class="login-aside text-center d-flex flex-column flex-row-auto">
+            <div class="d-flex flex-column-auto flex-column pt-lg-40 pt-15">
+                <div class="text-center mb-lg-4 mb-2 pt-5 logo">
+                    <img src="{% static 'tradingapp/images/logo-white.png' %}" alt="">
+                </div>
+                <h3 class="mb-2 text-white">Welcome back!</h3>
+            </div>
+            <div class="aside-image position-relative" style="background-image:url({% static 'tradingapp/images/background/pic-2.png' %});">
+                <img class="img1 move-1" src="{% static 'tradingapp/images/background/pic3.png' %}" alt="">
+                <img class="img2 move-2" src="{% static 'tradingapp/images/background/pic4.png' %}" alt="">
+                <img class="img3 move-3" src="{% static 'tradingapp/images/background/pic5.png' %}" alt="">
+            </div>
+        </div>
+
+        <!-- Formulario -->
+        <div class="container flex-row-fluid d-flex flex-column justify-content-center position-relative overflow-hidden p-7 mx-auto">
+            <div class="d-flex justify-content-center h-100 align-items-center">
+                <div class="authincation-content style-2">
+                    <div class="row no-gutters">
+                        <div class="col-xl-12 tab-content">
+                            <div id="sign-up" class="auth-form tab-pane fade show active form-validation">
+
+                                <form method="POST" action="{% url 'tradingapp:page-login' %}">
+                                    {% csrf_token %}
+
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            <div class="alert alert-{{ message.tags }} mt-2">{{ message }}</div>
+                                        {% endfor %}
+                                    {% endif %}
+
+                                    <div class="text-center mb-4">
+                                        <h3 class="text-center mb-2 text-dark">Sign In</h3>
+                                        <span>Your Social Campaigns</span>
+                                    </div>
+
+                                    <div class="sepertor">
+                                        <span class="d-block mb-4 fs-13">Or with email</span>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label required">Email address</label>
+                                        <input type="email" name="email" class="form-control" placeholder="Email" required>
+                                    </div>
+
+                                    <div class="mb-3 position-relative">
+                                        <label class="form-label required">Password</label>
+                                        <input type="password" name="password" class="form-control" placeholder="Password" required>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-block btn-primary">Sign In</button>
+                                </form>
+
+                                <!-- Botón de Login con Google -->
+                                <div class="text-center mt-4">
+                                    <a href="/accounts/google/login/?process=login" class="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center">
+										<img src="https://developers.google.com/identity/images/g-logo.png" alt="Google Logo" style="height: 20px; margin-right: 10px;">
+										Sign in with Google
+									</a>
+
+                                </div>
+
+                                <!-- Registro -->
+                                <div class="new-account mt-4 text-center">
+                                    <p class="font-w500">Don't have an account? <a class="text-primary" href="{% url 'tradingapp:page-register' %}">Sign up</a></p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    {% for jsurl in dz_array.global.js.top %}
+    <script src="{% static jsurl %}"></script>
+    {% endfor %}
+
+    {% for jsurl in dz_array.pagelevel.tradingapp.tradingapp_views.js|getdata:request.path %}
+    <script src="{% static jsurl %}"></script>
+    {% endfor %}
+
+    {% for jsurl in dz_array.global.js.bottom %}
+    <script src="{% static jsurl %}"></script>
+    {% endfor %}
+
+    {% block additional_js %}{% endblock %}
+</body>
+</html>

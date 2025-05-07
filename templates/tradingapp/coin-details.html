@@ -1,0 +1,576 @@
+{% extends 'tradingapp/elements/layouts/admin.html' %}
+{% load static %}
+
+{% block additional_css %}
+{% endblock %}
+
+{% block content %}
+
+<!--**********************************
+    Content body start
+***********************************-->
+<div class="content-body">
+    <!-- row -->
+    <div class="container-fluid">
+        <!-- Row -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="coin-warpper d-flex align-items-center justify-content-between flex-wrap">
+                    <div>
+                        <ul class="nav nav-pills">
+                            <li class=" nav-item">
+                                <button class="nav-link active bitcoin ms-0" id="nav-bitcoin-tab" data-bs-toggle="tab" data-bs-target="#nav-bitcoin" type="button" ><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16 9.50011C15.9993 8.67201 15.328 8.00092 14.5001 8H10V11H14.5001C15.328 10.9993 15.9993 10.328 16 9.50011Z" fill="#FFAB2D"/>
+                                        <path d="M10 16H14.5001C15.3285 16 16 15.3285 16 14.5001C16 13.6715 15.3285 13 14.5001 13H10V16Z" fill="#FFAB2D"/>
+                                        <path d="M12 0C5.3726 0 0 5.3726 0 12C0 18.6274 5.3726 24 12 24C18.6274 24 24 18.6274 24 12C23.9924 5.37574 18.6243 0.00758581 12 0ZM18.0001 14.5713C17.9978 16.4641 16.4641 17.9978 14.5716 17.9999V18.8571C14.5716 19.3305 14.1876 19.7143 13.7144 19.7143C13.2409 19.7143 12.8572 19.3305 12.8572 18.8571V17.9999H11.1431V18.8571C11.1431 19.3305 10.7591 19.7143 10.2859 19.7143C9.8124 19.7143 9.42866 19.3305 9.42866 18.8571V17.9999H6.85733C6.38387 17.9999 6.00013 17.6161 6.00013 17.1429C6.00013 16.6695 6.38387 16.2857 6.85733 16.2857H7.71427V7.71427H6.85733C6.38387 7.71427 6.00013 7.33053 6.00013 6.85707C6.00013 6.38361 6.38387 5.99987 6.85733 5.99987H9.42866V5.14293C9.42866 4.66947 9.8124 4.28573 10.2859 4.28573C10.7593 4.28573 11.1431 4.66947 11.1431 5.14293V5.99987H12.8572V5.14293C12.8572 4.66947 13.2409 4.28573 13.7144 4.28573C14.1879 4.28573 14.5716 4.66947 14.5716 5.14293V5.99987C16.4571 5.99202 17.992 7.5139 18.0001 9.39937C18.0043 10.3978 17.5714 11.3481 16.8152 12C17.5643 12.6445 17.9967 13.5828 18.0001 14.5713Z" fill="#FFAB2D"/>
+                                    </svg>
+                                    Bitcoin
+                                </button>
+                            </li>
+                            <li class="nav-ite">
+                                <button type="button" class="nav-link litcoin mt-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" 	xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 14C13.1046 14 14 13.1046 14 12C14 10.8954 13.1046 10 12 10C10.8954 10 10 10.8954 10 12C10 13.1046 10.8954 14 12 14Z" fill="var(--text-dark)"/>
+                                        <path d="M4 14C5.10456 14 5.99999 13.1046 5.99999 12C5.99999 10.8954 5.10456 10 4 10C2.89543 10 2 10.8954 2 12C2 13.1046 2.89543 14 4 14Z" fill="var(--text-dark)"/>
+                                        <path d="M20 14C21.1046 14 22 13.1046 22 12C22 10.8954 21.1046 10 20 10C18.8954 10 18 10.8954 18 12C18 13.1046 18.8954 14 20 14Z" fill="var(--text-dark)"/>
+                                    </svg>
+                                    More Crypto
+                                    </button>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="input-group search-area w-auto coin-tab-search mt-xl-0 mt-2">
+                        <input type="text" class="form-control" placeholder="Search here...">
+                        <span class="input-group-text"><a href="javascript:void(0)">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="svg-main-icon">
+                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                    <rect x="0" y="0" width="24" height="24"/>
+                                    <path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z" fill="var(--text-dark)" fill-rule="nonzero" opacity="0.3"/>
+                                    <path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z" fill="var(--text-dark)" fill-rule="nonzero"/>
+                                </g>
+                            </svg>
+                        </a></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-12">
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-bitcoin" role="tabpanel" aria-labelledby="nav-bitcoin-tab">
+                        <div class="row">
+                            <div class="col-xl-9">
+                                <div class="card coin-content">		
+                                    <div class="card-header border-0 flex-wrap pb-0">
+                                        <div class="mb-xl-0 mb-2">
+                                            <h4 class="card-title">Coin Chart</h4>
+                                            <span class="fs-12">Candles Chart</span>
+                                        </div>
+                                            <select class="default-select" aria-label="Default">
+                                                <option selected>USD ($ US Dollar)</option>
+                                                <option value="1">BTC ($ US Dollar)</option>
+                                                <option value="2">USD ($ US Dollar)</option>
+                                            </select>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                            <div class="d-flex align-items-end justify-content-between flex-wrap">
+                                                <div class="price-content">
+                                                    <span class="fs-14 d-block mb-2">Price</span>
+                                                    <h4 class="font-w600 mb-0" id="price">${{ coin_data.price|floatformat:2 }}</h4> <!-- Aquí se muestra el precio -->
+                                                </div>
+                                                <div class="price-content">
+                                                    <span class="fs-14 d-block mb-2">24h Change</span>
+                                                    <h4 class="font-w600 mb-0" id="change24h">
+                                                        {% if coin_data.change24h >= 0 %}
+                                                            <span class="text-success">{{ coin_data.change24h|floatformat:2 }}% <i class="fa-solid fa-caret-up ms-1 text-success"></i></span> <!-- Cambio en 24h -->
+                                                        {% else %}
+                                                            <span class="text-danger">{{ coin_data.change24h|floatformat:2 }}% <i class="fa-solid fa-caret-down ms-1 text-danger"></i></span>
+                                                        {% endif %}
+                                                    </h4>
+                                                </div>
+
+                                                <div class="price-content">
+                                                    <span class="fs-14 d-block mb-2">Volume (24h)</span>
+                                                    <h4 class="font-w600 mb-0" id="volume">${{ coin_data.volume|floatformat:2 }}B</h4> <!-- Volumen en 24h -->
+                                                </div>
+
+                                                <div class="price-content">
+                                                    <span class="fs-14 d-block mb-2">Market Cap</span>
+                                                    <h4 class="font-w600 mb-0" id="marketCap">${{ coin_data.marketCap|floatformat:2 }}B</h4> <!-- Capitalización de mercado -->
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Aquí puedes agregar el gráfico de velas -->
+                                        <canvas id="btc-candlestick-chart" class="mt-5" style="height: 350px; width: 100%;"></canvas>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-sm-12">
+                                <div class="card  digital-cash">
+                                    <div class="card-header border-0">
+                                        <h4 class="card-title">About</h4>
+                                        <div class="dropdown custom-dropdown mb-0 tbl-orders-style">
+                                            <div class="btn sharp tp-btn" data-bs-toggle="dropdown" aria-expanded="false" role="button">
+                                                <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M12.0335 13C12.5854 13 13.0328 12.5523 13.0328 12C13.0328 11.4477 12.5854 11 12.0335 11C11.4816 11 11.0342 11.4477 11.0342 12C11.0342 12.5523 11.4816 13 12.0335 13Z" stroke="var(--text-dark
+                                                    )" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M12.0335 6C12.5854 6 13.0328 5.55228 13.0328 5C13.0328 4.44772 12.5854 4 12.0335 4C11.4816 4 11.0342 4.44772 11.0342 5C11.0342 5.55228 11.4816 6 12.0335 6Z" stroke="var(--text-dark
+                                                    )" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    <path d="M12.0335 20C12.5854 20 13.0328 19.5523 13.0328 19C13.0328 18.4477 12.5854 18 12.0335 18C11.4816 18 11.0342 18.4477 11.0342 19C11.0342 19.5523 11.4816 20 12.0335 20Z" stroke="var(--text-dark
+                                                    )" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <a class="dropdown-item" href="javascript:void(0);">Details</a>
+                                                <a class="dropdown-item text-danger" href="javascript:void(0);">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body py-0">
+                                        <div class="text-center">
+                                            <div class="media d-block">
+                                                <svg width="80" height="80" viewBox="0 0 126 126" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M84.0001 49.8757C83.9965 45.5281 80.4721 42.0049 76.1257 42.0001H52.5001V57.7501H76.1257C80.4721 57.7465 83.9965 54.222 84.0001 49.8757Z" fill="#FFAB2D"/>
+                                                    <path d="M52.5001 83.9999H76.1257C80.4745 83.9999 84.0001 80.4743 84.0001 76.1255C84.0001 71.7756 80.4745 68.2499 76.1257 68.2499H52.5001V83.9999Z" fill="#FFAB2D"/>
+                                                    <path d="M63 0C28.2061 0 0 28.2061 0 63C0 97.7938 28.2061 126 63 126C97.7938 126 126 97.7938 126 63C125.96 28.2226 97.7774 0.0398255 63 0V0ZM94.5007 76.4995C94.4883 86.4367 86.4367 94.4883 76.5009 94.4993V98.9996C76.5009 101.485 74.4849 103.5 72.0006 103.5C69.5149 103.5 67.5003 101.485 67.5003 98.9996V94.4993H58.5011V98.9996C58.5011 101.485 56.4851 103.5 54.0008 103.5C51.5151 103.5 49.5005 101.485 49.5005 98.9996V94.4993H36.001C33.5153 94.4993 31.5007 92.4847 31.5007 90.0004C31.5007 87.5147 33.5153 85.5001 36.001 85.5001H40.4999V40.4999H36.001C33.5153 40.4999 31.5007 38.4853 31.5007 35.9996C31.5007 33.5139 33.5153 31.4993 36.001 31.4993H49.5005V27.0004C49.5005 24.5147 51.5151 22.5001 54.0008 22.5001C56.4865 22.5001 58.5011 24.5147 58.5011 27.0004V31.4993H67.5003V27.0004C67.5003 24.5147 69.5149 22.5001 72.0006 22.5001C74.4863 22.5001 76.5009 24.5147 76.5009 27.0004V31.4993C86.3996 31.4581 94.4581 39.448 94.5007 49.3467C94.5227 54.5886 92.2498 59.5777 88.2796 63C92.2128 66.3838 94.4828 71.3098 94.5007 76.4995V76.4995Z" fill="#FFAB2D"/>
+                                                </svg>
+                                                <div class="media-content">
+                                                    <h4 class="mt-0 mt-md-4 fs-20 font-w700 text-dark mb-0">Digital Cash</h4>
+                                                    <span class="font-w600 text-dark">Bitcoin</span>
+                                                    <span class="my-4 fs-16 font-w600 d-block">1 BITCOIN = {{ btc_price }} USD</span>
+                                                    <p class="text-start">Bitcoin is a decentralized digital currency that enables peer-to-peer transactions without the need for a central authority. It was introduced in 2009 by an anonymous individual or group using the pseudonym Satoshi Nakamoto. Bitcoin operates on a blockchain—a public ledger that records all transactions transparently and securely. With a capped supply of 21 million coins, Bitcoin is often considered a hedge against inflation and a store of value. Its decentralized nature and limited supply have contributed to its popularity as both a medium of exchange and an investment asset.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-12">
+                                <div class="card quick-trade">
+                                    <!-- Sección: Holdings -->
+                                    <div class="card mt-4">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Your Holdings</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            {% if has_btc %}
+                                                {% for coin in holdings %}
+                                                    {% if coin.symbol == 'BTC' %}
+                                                        <p class="fs-16">You currently own <strong>{{ coin.amount|floatformat:6 }}</strong> BTC</p>
+                                                        <p class="fs-14 text-muted">Equivalent to <strong>${{ btc_equivalent|floatformat:2 }}</strong> USDC</p>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% else %}
+                                                <p>You currently own <strong>0.000000</strong> BTC</p>
+                                                <p class="fs-14 text-muted">Equivalent to <strong>$0.00</strong> USDC</p>
+                                            {% endif %}
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Sección: Quick Trade -->
+                                    <div class="card-header pb-0 border-0 flex-wrap">
+                                        <div>
+                                            <h4 class="card-title">Quick Trade</h4>
+                                            <p class="mb-xl-0 mb-3 fs-12">Trade instantly at current market price</p>
+                                        </div>
+                                        <select class="form-control custom-image-select-1 image-select mt-3 mt-sm-0 bitcoin-border">
+                                            <option data-thumbnail="{% static 'tradingapp/images/svg/btc.svg' %}">Bitcoin</option>
+                                            <option data-thumbnail="{% static 'tradingapp/images/svg/eth.svg' %}">Ethereum</option>
+                                            <option data-thumbnail="{% static 'tradingapp/images/svg/dash.svg' %}">Dash</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="card-body pb-0">
+                                        <div class="basic-form">
+                                            <form class="form-wrapper trade-form">
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text">Amount {{ coin_symbol }}</span>
+                                                    <input id="amount_btc" name="amount_btc" class="form-control text-end" type="text" placeholder="0.000000">
+                                                    <button type="button" id="btn_max_btc" class="btn btn-outline-primary">MAX</button>
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text">Price USDC</span>
+                                                    <input id="price_usdc" name="price_usdc" class="form-control text-end" type="text" value="..." readonly>
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text">Fee (1%)</span>
+                                                    <input id="fee_usdc" name="fee_usdc" class="form-control text-end" type="text" value="0.00" readonly>
+                                                </div>
+                                                <div class="input-group mb-3">
+                                                    <span class="input-group-text">Total USDC</span>
+                                                    <input id="total_usdc" name="total_usdc" class="form-control text-end" type="text" value="0.00" readonly>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-footer border-0">
+                                        <div class="row">
+                                            <div class="col-6 px-sm-3 px-2">
+                                                <form method="POST" action="{% url 'tradingapp:buy_btc' %}" class="form-wrapper trade-form">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="amount_btc" id="hidden_amount_btc">
+                                                    <input type="hidden" name="price_usdc" id="hidden_price_usdc">
+                                                    <input type="hidden" name="fee" id="hidden_fee_usdc">
+                                                    <input type="hidden" name="total_usdc" id="hidden_total_usdc">
+                                                    <button type="submit" onclick="submitBuyForm()" class="btn btn-success w-100">BUY</button>
+
+                                                </form>
+                                            </div>
+                                            <div class="col-6 px-sm-3 px-2">
+                                                <form method="POST" action="{% url 'tradingapp:sell_btc' %}" class="form-wrapper trade-form">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="amount_btc" id="hidden_amount_btc_sell">
+                                                    <input type="hidden" name="price_usdc" id="hidden_price_usdc_sell">
+                                                    <button type="submit" onclick="submitSellForm()" class="btn d-flex btn-danger align-items-center justify-content-between w-100">
+                                                        SELL
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex mt-3 align-items-center">
+                                            <div class="form-check custom-checkbox">
+                                                <input type="checkbox" class="form-check-input" id="customCheckBox1" required>
+                                                <label class="form-check-label fs-14 font-w400 mt-1" for="customCheckBox1">
+                                                    I understand the market may be volatile.
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3 col-sm-6">
+                                <div class="card price-list">
+                                    <div class="card-header border-0 p-3">
+                                        <div>
+                                            <h4 class="text-warning card-title">Buy Order</h4>
+                                        </div>
+                                    </div>
+                                    <div class="card-body px-3 py-0">
+                                        <select class="form-control custom-image-select-2 style-1 image-select mt-3 mt-sm-0 bit">
+                                            <option data-thumbnail="{% static 'tradingapp/images/svg/btc.svg' %}" data-content="<img src='images/svg/btc.svg'/> Bitcoin">Bitcoin</option>
+                                            <option data-thumbnail="{% static 'tradingapp/images/svg/dash.svg' %}" data-content="<img src='images/svg/dash.svg'/> Dash Coin">Dash Coin</option>
+                                            <option data-thumbnail="{% static 'tradingapp/images/svg/btc.svg' %}" data-content="<img src='images/svg/btc.svg'/> Ripple">Ripple</option>
+                                            <option data-thumbnail="{% static 'tradingapp/images/svg/eth.svg' %}" data-content="<img src='images/svg/eth.svg'/> Ethereum">Ethereum</option>
+                                            
+                                        </select>
+                                        <div class="table-responsive">
+                                            <!-- Tabla de órdenes de compra -->
+                                            <table class="table text-center bg-warning-hover tr-rounded order-tbl mt-2">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-start">Price</th>
+                                                        <th class="text-center">Amount</th>
+                                                        <th class="text-end">Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="buy-orders-body">
+                                                    <!-- Las filas se insertarán dinámicamente con JavaScript -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-sm-">
+                                <div class="card price-list">
+                                    <div class="card-header border-0 p-3">
+                                        <div>
+                                            <h4 class="card-title text-danger">Sell Order</h4>
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-3 py-0">
+                                        <select class="form-control custom-image-select-2 style-1 image-select mt-3 mt-sm-0 bit">
+                                            <option data-thumbnail="{% static 'tradingapp/images/svg/btc.svg' %}" data-content="<img src='images/svg/btc.svg'/> Bitcoin">Bitcoin</option>
+                                            <option data-thumbnail="{% static 'tradingapp/images/svg/dash.svg' %}" data-content="<img src='images/svg/dash.svg'/> Dash Coin">Dash Coin</option>
+                                            <option data-thumbnail="{% static 'tradingapp/images/svg/btc.svg' %}" data-content="<img src='images/svg/btc.svg'/> Ripple">Ripple</option>
+                                            <option data-thumbnail="{% static 'tradingapp/images/svg/eth.svg' %}" data-content="<img src='images/svg/eth.svg'/> Ethereum">Ethereum</option>
+
+                                        </select>
+                                        <div class="table-responsive">
+                                            <table class="table text-center bg-danger-hover tr-rounded order-tbl mt-2">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-start">Price</th>
+                                                        <th class="text-center">Amount</th>
+                                                        <th class="text-end">Total</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="sell-orders-body">
+                                                    <!-- Aquí se cargarán las órdenes de venta desde la API -->
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                
+                </div>	
+            </div>
+        </div>
+    </div>
+</div>
+<!--**********************************
+    Content body end
+***********************************-->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Crypto title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+        <div class="col-xl-12">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label required">Crypto Name</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Bitcoin">
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+    </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
+
+{% block additional_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+
+<script>
+// ✅ SUBMIT MANUAL FORM
+function submitSellForm() {
+    document.getElementById("hidden_amount_btc_sell").value = document.getElementById("amount_btc").value;
+    document.getElementById("hidden_price_usdc_sell").value = document.getElementById("price_usdc").value;
+
+    document.querySelector('form[action*="sell_btc"]').submit();
+}
+
+function submitBuyForm() {
+    document.getElementById("hidden_amount_btc").value = document.getElementById("amount_btc").value;
+    document.getElementById("hidden_price_usdc").value = document.getElementById("price_usdc").value;
+    document.getElementById("hidden_fee_usdc").value = document.getElementById("fee_usdc").value;
+    document.getElementById("hidden_total_usdc").value = document.getElementById("total_usdc").value;
+}
+
+// ✅ GRÁFICO BTC
+let btcChart = null;
+async function fetchAndDrawBTCChart() {
+    try {
+        const response = await fetch("/coinmarketcap-bar-data/?days=7");
+        const raw = await response.json();
+
+        const transformed = raw.quotes.map(d => ({
+            x: d.timestamp,
+            o: d.quote.USD.open,
+            h: d.quote.USD.high,
+            l: d.quote.USD.low,
+            c: d.quote.USD.close
+        }));
+
+        const ctx = document.getElementById("btc-candlestick-chart").getContext("2d");
+        if (btcChart) btcChart.destroy();
+
+        btcChart = new Chart(ctx, {
+            type: "candlestick",
+            data: {
+                datasets: [{
+                    label: "BTC/USD",
+                    data: transformed
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        type: "time",
+                        time: { unit: "day" }
+                    },
+                    y: {
+                        title: { display: true, text: "Price (USD)" }
+                    }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+    } catch (error) {
+        console.error("[ERROR] renderizando gráfico:", error);
+    }
+}
+
+// ✅ ORDER BOOK DE BINANCE
+async function loadOrderBookBinance(symbol = 'BTCUSDT') {
+    try {
+        const res = await fetch(`https://api.binance.com/api/v3/depth?symbol=${symbol}&limit=8`);
+        const data = await res.json();
+
+        const formatRow = (price, amount) => {
+            price = parseFloat(price);
+            amount = parseFloat(amount);
+            const total = (price * amount).toFixed(2);
+            return `
+                <tr>
+                    <td class="text-start">${price.toFixed(2)}</td>
+                    <td>${amount.toFixed(4)}</td>
+                    <td class="text-end">$${total}</td>
+                </tr>`;
+        };
+
+        document.getElementById('buy-orders-body').innerHTML = data.bids.map(b => formatRow(b[0], b[1])).join('');
+        document.getElementById('sell-orders-body').innerHTML = data.asks.map(a => formatRow(a[0], a[1])).join('');
+    } catch (err) {
+        console.error('Error cargando order book:', err);
+    }
+}
+
+// ✅ SELECTORES COMPRA/VENTA
+function setupOrderBookSelectListeners() {
+    const mapSymbols = {
+        'Bitcoin': 'BTCUSDT',
+        'Ethereum': 'ETHUSDT',
+        'Dash Coin': 'DASHUSDT',
+        'Ripple': 'XRPUSDT'
+    };
+
+    const buySelect = document.getElementById('buy-select');
+    const sellSelect = document.getElementById('sell-select');
+
+    if (buySelect) {
+        buySelect.addEventListener('change', (e) => {
+            const selected = e.target.options[e.target.selectedIndex].text.trim();
+            loadOrderBookBinance(mapSymbols[selected] || 'BTCUSDT');
+        });
+    }
+
+    if (sellSelect) {
+        sellSelect.addEventListener('change', (e) => {
+            const selected = e.target.options[e.target.selectedIndex].text.trim();
+            loadOrderBookBinance(mapSymbols[selected] || 'BTCUSDT');
+        });
+    }
+}
+
+// ✅ PRECIO BTC ACTUAL
+async function setLiveBTCPrice() {
+    try {
+        const response = await fetch("/coinmarketcap-bar-data/?days=1");
+        const data = await response.json();
+
+        if (data.quotes && data.quotes.length > 0) {
+            const lastQuote = data.quotes[data.quotes.length - 1];
+            const price = lastQuote.quote.USD.close;
+            const priceInput = document.getElementById("price_usdc");
+            if (priceInput) priceInput.value = price.toFixed(2);
+
+            document.getElementById("amount_btc")?.dispatchEvent(new Event('input'));
+        }
+    } catch (error) {
+        console.error("[ERROR] obteniendo precio BTC:", error);
+    }
+}
+
+// ✅ CÁLCULOS Y BOTÓN MAX
+function setupBuyBTCListener() {
+    const amountInput = document.getElementById("amount_btc");
+    const priceInput = document.getElementById("price_usdc");
+    const feeInput = document.getElementById("fee_usdc");
+    const totalInput = document.getElementById("total_usdc");
+    const maxButton = document.getElementById("btn_max_btc");
+
+    if (!amountInput || !priceInput || !feeInput || !totalInput) return;
+
+    function calculateTotal() {
+        const amount = parseFloat(amountInput.value);
+        const price = parseFloat(priceInput.value);
+
+        if (!isNaN(amount) && !isNaN(price)) {
+            const total = amount * price;
+            const fee = total * 0.01;
+            const totalAfterFee = total - fee;
+
+            feeInput.value = fee.toFixed(2);
+            totalInput.value = totalAfterFee.toFixed(2);
+        } else {
+            feeInput.value = "0.00";
+            totalInput.value = "0.00";
+        }
+    }
+
+    amountInput.addEventListener("input", calculateTotal);
+
+    if (maxButton) {
+        maxButton.addEventListener("click", async () => {
+            try {
+                const res = await fetch("/api/get-balance/");
+                const data = await res.json();
+
+                const balanceUSDC = parseFloat(data.balance);
+                const price = parseFloat(priceInput.value);
+
+                if (!isNaN(price) && price > 0 && !isNaN(balanceUSDC)) {
+                    const maxBTC = balanceUSDC / (price * 1.01); // 1% fee incluido
+                    amountInput.value = maxBTC.toFixed(6);
+                    amountInput.dispatchEvent(new Event('input'));
+                }
+            } catch (error) {
+                console.error("Error obteniendo balance:", error);
+            }
+        });
+    }
+}
+
+// ✅ AL CARGAR TODO
+window.addEventListener("DOMContentLoaded", () => {
+    loadOrderBookBinance();
+    setupOrderBookSelectListeners();
+    fetchAndDrawBTCChart();
+    setupBuyBTCListener();
+    setLiveBTCPrice();
+});
+</script>
+
+<!-- Mensajes temporales -->
+<script>
+setTimeout(() => {
+    const container = document.getElementById("message-container");
+    if (container) {
+        container.style.transition = "opacity 0.5s ease";
+        container.style.opacity = 0;
+        setTimeout(() => container.remove(), 500);
+    }
+}, 3000);
+</script>
+
+<!-- Tema oscuro -->
+<script>
+jQuery(document).ready(function(){
+    setTimeout(function(){
+        dlabSettingsOptions.version = 'dark';
+        new dlabSettings(dlabSettingsOptions);
+    }, 1500)
+});
+</script>
+{% endblock %}
+
