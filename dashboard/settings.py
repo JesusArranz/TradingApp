@@ -141,7 +141,7 @@ USE_TZ = True
 # ------------------------------------------------
 # ARCHIVOS ESTÁTICOS
 # ------------------------------------------------
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 if DEBUG:
     STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 else:
