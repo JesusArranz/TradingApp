@@ -4,7 +4,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-+)73&xuvn+1mfzxg5ayvqky@ha6cc0d#ju-441@t4(r57@*7x0'
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['*']
 LOGIN_URL = '/page-login/'
 
